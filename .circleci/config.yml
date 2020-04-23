@@ -21,7 +21,6 @@ jobs:
           account-url: AWS_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          context: va-circleci
           create-repo: true
           dockerfile: Dockerfile
           path: ./
@@ -33,4 +32,5 @@ jobs:
 workflows:
   main:
     jobs:
-      - build-and-test
+      - build-and-test:
+          context: va-circleci
