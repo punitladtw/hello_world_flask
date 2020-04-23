@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@0.2.1
+  tester: thekevjames/tester@1.2.20
 
 jobs:
   build-and-test:
@@ -11,9 +12,7 @@ jobs:
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run:
-          command: pytest
-          name: Test
+      - tester/pytest
 
 workflows:
   main:
