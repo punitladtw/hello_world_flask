@@ -16,6 +16,11 @@ jobs:
           name: Test
       - store_test_results:
           path: test_results
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run: 
+          command: docker build -t hello_world_flask:latest .
+          name: Build
 
 workflows:
   main:
