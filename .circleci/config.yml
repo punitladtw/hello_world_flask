@@ -24,11 +24,11 @@ jobs:
       - run:
           command: "publish image"
 
-    publish:
-      executor: python/default
-      steps:
-        - run:
-            command: "echo hello"
+  publish:
+    executor: python/default
+    steps:
+      - run:
+          command: "echo hello"
 
 workflows:
   main:
