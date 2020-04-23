@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@0.2.1
+  aws-ecr: circleci/aws-ecr@6.8.2
 
 jobs:
   build-and-test:
@@ -16,22 +17,20 @@ jobs:
           name: Test
       - store_test_results:
           path: test_results
-      - setup_remote_docker:
-          docker_layer_caching: false
-      - run: 
-          command: docker build -t hello_world_flask:latest .
-          name: Build
-      - run:
-          command: "publish image"
-
-  publish:
-    executor: python/default
-    steps:
-      - run:
-          command: "echo hello"
+      - aws-ecr/build-and-push-image:
+          account-url: 437518843863.dkr.ecr.us-east-2.amazonaws.com
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          context: va-circleci
+          create-repo: true
+          dockerfile: Dockerfile
+          path: ./
+          profile-name: va-circleci
+          region: us-east-2
+          repo: hello_world_flask
+          tag: 'latest'
 
 workflows:
   main:
     jobs:
       - build-and-test
-      - publish
