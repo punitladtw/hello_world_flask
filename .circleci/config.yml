@@ -21,8 +21,17 @@ jobs:
       - run: 
           command: docker build -t hello_world_flask:latest .
           name: Build
+      - run:
+          command: "publish image"
+
+    publish:
+      executor: python/default
+      steps:
+        - run:
+            command: "echo hello"
 
 workflows:
   main:
     jobs:
       - build-and-test
+      - publish
