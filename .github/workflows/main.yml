@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-and-push:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -36,3 +36,14 @@ jobs:
       run: |
         pip install pytest
         pytest
+
+    - name: Build and push to AWS ECR
+      uses: kciter/aws-ecr-action@v1
+      with:
+        access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+        repo: docker/repo
+        region: us-east-2
+        tags: latest,${{ github.sha }}
+        create_repo: true
