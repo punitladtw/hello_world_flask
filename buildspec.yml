@@ -6,7 +6,7 @@ phases:
   install:
     commands:
       - pip install -r requirements.txt
-  pre-build:
+  pre_build:
     commands:
       - pip install pytest
       - echo "[+] Running tests..."
