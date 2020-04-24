@@ -8,6 +8,7 @@ jobs:
   test:
     executor: python/default
     steps:
+      - checkout
       - python/load-cache
       - python/install-deps
       - python/save-cache
@@ -18,6 +19,7 @@ jobs:
   lint:
     executor: python/default
     steps:
+      - checkout
       - python/load-cache
       - python/install-deps
       - python/save-cache
