@@ -28,7 +28,7 @@ jobs:
           profile-name: va-circleci
           region: AWS_REGION
           repo: hello_world_flask
-          tag: 'latest'
+          tag: 'circle-ci'
 
 workflows:
   main:
