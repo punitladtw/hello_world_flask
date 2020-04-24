@@ -23,9 +23,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Set up Python 3.8
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.8' # Semantic version range syntax or exact version of a Python version
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.8' # Semantic version range syntax or exact version of a Python version
 
     - name: Install dependencies
         run: |
