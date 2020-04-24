@@ -10,7 +10,7 @@ phases:
     commands:
       - pip install pytest
       - echo "[+] Running tests..."
-      - python -m pytest tests/ -v
+      - python -m pytest
 
 cache:
   paths:
