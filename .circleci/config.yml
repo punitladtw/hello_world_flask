@@ -35,7 +35,6 @@ jobs:
   build-and-publish:
     executor: python/default
     steps:
-      - checkout
       - aws-ecr/build-and-push-image:
           account-url: AWS_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
