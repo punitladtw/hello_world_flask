@@ -81,4 +81,4 @@ jobs:
         create_repo: true
 
     - name: Print output
-      run: echo ${{ ${{ toJson(steps.build-and-push-to-ecr.outputs) }}
+      run: echo ${{ toJson(steps.build-and-push-to-ecr.outputs) }}
