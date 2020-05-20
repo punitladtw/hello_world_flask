@@ -65,8 +65,22 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Test setting output 1
+        id: test-1
+        run: echo ::set-output name=foo::bar
+
+      - name: Test setting output 2
+        id: test-2
+        run: echo "::set-output name=foo::bar"
+
+      - name: Print output 1
+        run: echo ${{ toJson(steps.test-1.outputs) }}
+
+      - name: Print output 2
+        run: echo ${{ toJson(steps.test-2.outputs) }}
 
     - name: Build and push to AWS ECR
       id: build-and-push-to-ecr
@@ -79,6 +93,3 @@ jobs:
         region: us-east-2
         tags: latest-github
         create_repo: true
-
-    - name: Print output
-      run: echo ${{ toJson(steps.build-and-push-to-ecr.outputs) }}
