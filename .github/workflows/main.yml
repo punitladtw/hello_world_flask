@@ -73,7 +73,10 @@ jobs:
       run: echo ::set-output name=foo::bar
 
     - name: Print output direct no quotes
-      run: echo "${{ toJson(steps.test-1.outputs) }}"
+      run: |
+        echo "\
+          ${{ toJson(steps.test-1.outputs) }}\
+        "
 
     - name: Test setting output direct quotes
       id: test-2
