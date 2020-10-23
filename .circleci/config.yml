@@ -32,29 +32,8 @@ jobs:
             flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
           name: lint
 
-  build-and-publish:
-    executor: python/default
-    steps:
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          setup-remote-docker: true
-          create-repo: true
-          dockerfile: Dockerfile
-          path: ./
-          profile-name: va-circleci
-          region: AWS_REGION
-          repo: hello_world_flask
-          tag: 'circle-ci'
-
 workflows:
   main:
     jobs:
       - test
       - lint
-      - build-and-publish:
-          requires:
-            - test
-            - lint
-          context: va-circleci
